@@ -1,8 +1,4 @@
 '''
-
-https://archive.ics.uci.edu/ml/machine-learning-databases/car/car.data
-https://archive.ics.uci.edu/ml/machine-learning-databases/00350/default%20of%20credit%20card%20clients.xls
-https://archive.ics.uci.edu/ml/machine-learning-databases/dermatology/dermatology.data
 https://archive.ics.uci.edu/ml/machine-learning-databases/00329/messidor_features.arff
 https://archive.ics.uci.edu/ml/machine-learning-databases/ecoli/ecoli.data
 https://archive.ics.uci.edu/ml/machine-learning-databases/00264/EEG%20Eye%20State.arff
@@ -47,6 +43,9 @@ def load_bcw(dropna=True, verbosity=False):
 
             * Delete
             ** Drop NaN
+        
+        --
+        https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data
     '''
     
     NAME = 'bcw.data'
@@ -95,6 +94,9 @@ def load_car(dropna=True, verbosity=False):
             Safety
         
         Note: All data items was categorized
+
+        --
+        https://archive.ics.uci.edu/ml/machine-learning-databases/car/car.data
     '''
 
     NAME = 'car.data'
@@ -123,6 +125,186 @@ def load_car(dropna=True, verbosity=False):
     return df
 
 #
+def load_credit_card_clients(dropna=True, verbosity=False):    
+    ''' 
+        Glass Type Dataset
+
+        COLUMNS
+        -------------------------------------------
+            ID*,
+            Limit_bal,
+            Sex,
+            Education,
+            Marriage,
+            Age,
+            Pay_0,
+            Pay_2,
+            Pay_3,
+            Pay_4,
+            Pay_5,
+            Pay_6,
+            Bill_amt1,
+            Bill_amt2,
+            Bill_amt3,
+            Bill_amt4,
+            Bill_amt5,
+            Bill_amt6,
+            Pay_amt1,
+            Pay_amt2,
+            Pay_amt3,
+            Pay_amt4,
+            Pay_amt5,
+            Pay_amt6,
+            Class
+
+            * Delete
+            
+            --
+            https://archive.ics.uci.edu/ml/machine-learning-databases/00350/default%20of%20credit%20card%20clients.xls
+    '''
+
+    NAME = 'credit_card_clients.data'
+    COLUMNS = [
+        'ID',
+        'Limit_bal',
+        'Sex',
+        'Education',
+        'Marriage',
+        'Age',
+        'Pay_0',
+        'Pay_2',
+        'Pay_3',
+        'Pay_4',
+        'Pay_5',
+        'Pay_6',
+        'Bill_amt1',
+        'Bill_amt2',
+        'Bill_amt3',
+        'Bill_amt4',
+        'Bill_amt5',
+        'Bill_amt6',
+        'Pay_amt1',
+        'Pay_amt2',
+        'Pay_amt3',
+        'Pay_amt4',
+        'Pay_amt5',
+        'Pay_amt6',
+        'Class'
+    ]
+
+    df = pd.read_csv(f'{PATH}{NAME}', names=COLUMNS)
+
+    df.drop(['ID'], axis=1, inplace=True)
+    
+    if verbosity:
+        aux = '\n  '
+        print(f'Data: {NAME}')
+        print(f'Lines: {df.shape[0]}')
+        print(f'Columns:\n  {aux.join(df.columns)}')
+
+    return df
+
+#
+def load_dermatology(dropna=True, verbosity=False):    
+    ''' 
+    Glass Type Dataset
+
+    COLUMNS
+    -------------------------------------------
+        Erythema,
+        Scaling,
+        Definite Borders,
+        Itching,
+        Koebner Phenomenon,
+        Polygonal Papules,
+        Follicular Papules,
+        Oral Mucosal Involvement,
+        Knee And Elbow Involvement,
+        Scalp Involvement,
+        Family History,
+        Melanin Incontinence,
+        Eosinophils In The Infiltrate,
+        Pnl Infiltrate,
+        Fibrosis Of The Papillary Dermis,
+        Exocytosis,
+        Acanthosis,
+        Hyperkeratosis,
+        Parakeratosis,
+        Clubbing Of The Rete Ridges,
+        Elongation Of The Rete Ridges,
+        Thinning Of The Suprapapillary Epidermis,
+        Spongiform Pustule,
+        Munro Microabcess,
+        Focal Hypergranulosis,
+        Disappearance Of The Granular Layer,
+        Vacuolisation And Damage Of Basal Layer,
+        Spongiosis,
+        Saw-Tooth Appearance Of Retes,
+        Follicular Horn Plug,
+        Perifollicular Parakeratosis,
+        Inflammatory Monoluclear Inflitrate,
+        Band-Like Infiltrate,
+        Age**,
+        Class
+
+        **Missing Values
+
+        --
+        https://archive.ics.uci.edu/ml/machine-learning-databases/dermatology/dermatology.data
+    '''
+
+    NAME = 'dermatology.data'
+    COLUMNS = [
+        'Erythema',
+        'Scaling',
+        'Definite Borders',
+        'Itching',
+        'Koebner Phenomenon',
+        'Polygonal Papules',
+        'Follicular Papules',
+        'Oral Mucosal Involvement',
+        'Knee And Elbow Involvement',
+        'Scalp Involvement',
+        'Family History',
+        'Melanin Incontinence',
+        'Eosinophils In The Infiltrate',
+        'Pnl Infiltrate',
+        'Fibrosis Of The Papillary Dermis',
+        'Exocytosis',
+        'Acanthosis',
+        'Hyperkeratosis',
+        'Parakeratosis',
+        'Clubbing Of The Rete Ridges',
+        'Elongation Of The Rete Ridges',
+        'Thinning Of The Suprapapillary Epidermis',
+        'Spongiform Pustule',
+        'Munro Microabcess',
+        'Focal Hypergranulosis',
+        'Disappearance Of The Granular Layer',
+        'Vacuolisation And Damage Of Basal Layer',
+        'Spongiosis',
+        'Saw-Tooth Appearance Of Retes',
+        'Follicular Horn Plug',
+        'Perifollicular Parakeratosis',
+        'Inflammatory Monoluclear Inflitrate',
+        'Band-Like Infiltrate',
+        'Age',
+        'Class'
+    ]
+
+    df = pd.read_csv(f'{PATH}{NAME}', names=COLUMNS)
+    df.replace('?', np.NaN, inplace=True)
+
+    if dropna:
+        df.dropna(inplace=True)
+
+    if verbosity:
+        aux = '\n  '
+        print(f'Data: {NAME}')
+        print(f'Lines: {df.shape[0]}')
+        print(f'Columns:\n  {aux.join(df.columns)}')
+
+#
 def load_glass(dropna=True, verbosity=False):    
     ''' 
         Glass Type Dataset
@@ -142,6 +324,9 @@ def load_glass(dropna=True, verbosity=False):
             Class
 
             * Delete
+        
+        --
+        https://archive.ics.uci.edu/ml/machine-learning-databases/glass/glass.data
     '''
     
     NAME = 'glass.data'
@@ -186,6 +371,8 @@ def load_iris(dropna=True, verbosity=False):
             1. Iris-versicolor: 50
             2. Iris-virginica: 50
         
+        --
+        https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data
     '''
 
     NAME = 'iris.data'
@@ -208,8 +395,6 @@ def load_iris(dropna=True, verbosity=False):
 
     return df
 
-
-
 #
 def load_wine(dropna=True, verbosity=False):
     ''' 
@@ -230,6 +415,9 @@ def load_wine(dropna=True, verbosity=False):
             Sulphates
             Alcohol
             Class (Quality)
+
+        --
+        https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv
     '''
 
     NAME = 'wine.data'
@@ -275,6 +463,9 @@ def load_titanic(dropna=True, verbosity=False):
             Fare
             
             *New
+        
+        --
+        https://www.kaggle.com/c/titanic/data?select=train.csv
     '''
 
     NAME = 'titanic.data'
