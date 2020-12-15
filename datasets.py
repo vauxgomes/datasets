@@ -487,6 +487,8 @@ def load_dermatology(dropna=True, verbosity=False):
         print(f'Lines: {df.shape[0]}')
         print(f'Columns:\n  {aux.join(df.columns)}')
 
+    return df
+
 #
 def load_ecoli(dropna=True, verbosity=False):
     ''' 
